@@ -61,6 +61,10 @@ view: users {
   dimension: city {
     type: string
     sql: ${TABLE}.city ;;
+    link: {
+      label: "City Metrics Explore"
+      url: "https://dcltraining.dev.looker.com/explore/ecommerce_srangala/order_items?fields=users.city,orders.count,users.count&f[users.city]={{ value }}&sorts=orders.count+desc&limit=500"
+    }
   }
 
   dimension: country {
