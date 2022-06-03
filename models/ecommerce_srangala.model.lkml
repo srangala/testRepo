@@ -8,8 +8,8 @@ include: "/views/**/*.view"
 # use the Quick Help panel on the right to see documentation.
 
 datagroup: ecommerce_srangala_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  sql_trigger: SELECT CURRENT_DATE();;
+  max_cache_age: "24 hour"
 }
 
 persist_with: ecommerce_srangala_default_datagroup
@@ -47,7 +47,11 @@ explore: order_items {
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
-
+  join: user_facts {
+    type: left_outer
+    sql_on: ${orders.user_id} = ${user_facts.user_id} ;;
+    relationship: many_to_one
+  }
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -76,6 +80,8 @@ explore: product_facts {
     relationship: many_to_one
   }
 }
+
+explore: user_facts {}
 
 # To create more sophisticated Explores that involve multiple views, you can use the join parameter.
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
