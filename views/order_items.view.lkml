@@ -81,6 +81,7 @@ view: order_items {
   }
 
   parameter: sale_price_metric_picker {
+    #test commit
     description: "Use with the Sale Price Metric measure"
     type: unquoted
     allowed_value: {
