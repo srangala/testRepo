@@ -7,6 +7,8 @@ include: "/views/**/*.view"
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
+#test comment
+
 datagroup: ecommerce_srangala_default_datagroup {
   sql_trigger: SELECT CURRENT_DATE();;
   max_cache_age: "24 hour"
@@ -20,6 +22,33 @@ persist_with: ecommerce_srangala_default_datagroup
 # Explores should be purpose-built for specific use cases.
 
 # To see the Explore you’re building, navigate to the Explore menu and select an Explore under "Ecommerce Srangala"
+
+explore: dt_employees {}
+explore: dt_people {
+  join: account_executive {
+    from: dt_employees
+    view_label: "Account Executive"
+    type: inner
+    relationship: one_to_one
+    sql_on: ${account_executive.id} = ${dt_people.id} ;;
+    #required_joins: [dt_employees]
+  }
+}
+
+explore: dt_employees_nullpk {}
+explore: dt_people_nullpk {
+  join: account_executive_nullpk {
+    from: dt_employees_nullpk
+    view_label: "Account Executive"
+    type: inner
+    relationship: one_to_one
+    sql_on: ${account_executive_nullpk.id} = ${dt_people_nullpk.id} ;;
+    #required_joins: [dt_employees_nullpk]
+  }
+
+}
+
+
 
 explore: inventory_items {
   join: products {
