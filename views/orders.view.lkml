@@ -16,6 +16,10 @@ view: orders {
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
+  dimension: test_split_4th_element {
+    sql: split_part ('Apple_Bear_Cow_Diagram_Elephant_Frog_Goat', '_', 4) ;;
+  }
+
   dimension_group: created {
     type: time
     timeframes: [
